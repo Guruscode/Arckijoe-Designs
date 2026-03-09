@@ -1,6 +1,5 @@
 'use client'
 
-import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import Header from '@/components/header'
@@ -9,11 +8,6 @@ import Footer from '@/components/footer'
 import AnimatedSection from '@/components/animated-section'
 import { motion } from 'framer-motion'
 import { ArrowRight, Heart, Target, Lightbulb, Users } from 'lucide-react'
-
-export const metadata: Metadata = {
-  title: 'About Arckijoe Designs | Architectural Expertise',
-  description: 'Learn about our mission, vision, and the team behind Arckijoe Designs.',
-}
 
 export default function About() {
   return (

@@ -1,6 +1,5 @@
 'use client'
 
-import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import Header from '@/components/header'
@@ -10,11 +9,6 @@ import ProductCard from '@/components/product-card'
 import Footer from '@/components/footer'
 import { motion } from 'framer-motion'
 import { ArrowRight, Zap, CheckCircle, Users, DollarSign, Truck, Award } from 'lucide-react'
-
-export const metadata: Metadata = {
-  title: 'Services & Products | Arckijoe Designs',
-  description: 'Explore our architectural design services and premium building materials.',
-}
 
 export default function Services() {
   const products = [
