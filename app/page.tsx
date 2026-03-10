@@ -32,7 +32,7 @@ export default function HomePage() {
           secondaryCtaHref="/services"
           background="gradient"
           align="center"
-          imageSrc="/bg.JPG"
+          imageSrc="/bg.jpg"
           imageAlt="Completed project by Arckijoe Designs"
         />
 
