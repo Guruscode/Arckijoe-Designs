@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
@@ -22,8 +23,15 @@ export default function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <span className="text-sm font-bold">AD</span>
+          <div className="relative h-10 w-10 overflow-hidden rounded-lg border border-border bg-white">
+            <Image
+              src="/logo.JPG"
+              alt="Arckijoe Designs logo"
+              fill
+              sizes="40px"
+              className="object-cover"
+              priority
+            />
           </div>
           <span className="hidden text-xl font-bold text-primary sm:inline">
             Arckijoe Designs

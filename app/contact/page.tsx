@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import Header from '@/components/header'
-import Hero from '@/components/hero'
 import ContactForm from '@/components/contact-form'
 import Footer from '@/components/footer'
 import { Clock, MapPin } from 'lucide-react'
@@ -15,14 +14,25 @@ export default function Contact() {
     <>
       <Header />
       <main className="w-full">
-        {/* Hero */}
-        <Hero
-          title="Let's Work Together"
-          subtitle="Get in Touch"
-          description="Have a project in mind? We'd love to hear from you. Reach out to discuss your architectural and construction needs."
-          background="gradient"
-          align="center"
-        />
+        <section className="border-b border-border bg-white py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="rounded-[2rem] border border-border bg-gradient-to-br from-primary to-primary/90 p-8 text-primary-foreground sm:p-10 lg:p-14">
+              <div className="max-w-3xl">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.28em] text-accent">
+                    Get in Touch
+                  </p>
+                  <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+                    Let&apos;s work together
+                  </h1>
+                  <p className="mt-6 max-w-2xl text-lg leading-8 text-primary-foreground/85">
+                    Have a project in mind? Reach out to discuss your architectural goals, material needs, or the right next step for your build.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Contact Form Section */}
         <section className="border-b border-border bg-white py-16 sm:py-24">

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -16,6 +17,8 @@ interface HeroProps {
   secondaryCtaHref?: string
   background?: 'gradient' | 'image' | 'solid'
   align?: 'left' | 'center'
+  imageSrc?: string
+  imageAlt?: string
 }
 
 export default function Hero({
@@ -28,6 +31,8 @@ export default function Hero({
   secondaryCtaHref,
   background = 'gradient',
   align = 'center',
+  imageSrc,
+  imageAlt = 'Hero image',
 }: HeroProps) {
   const { openModal } = useModal()
   const bgClass =
@@ -127,25 +132,39 @@ export default function Hero({
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl"
           >
-            <div className="w-full h-full bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 opacity-10"
-              >
-                <svg viewBox="0 0 100 100" className="w-full h-full">
-                  <path d="M50 10 L90 90 L10 90 Z" fill="currentColor" className="text-primary" />
-                </svg>
-              </motion.div>
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-6xl"
-              >
-                🏛️
-              </motion.div>
-            </div>
+            {imageSrc ? (
+              <>
+                <Image
+                  src={imageSrc}
+                  alt={imageAlt}
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+              </>
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-accent/20 to-accent/5">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                  className="absolute inset-0 opacity-10"
+                >
+                  <svg viewBox="0 0 100 100" className="h-full w-full">
+                    <path d="M50 10 L90 90 L10 90 Z" fill="currentColor" className="text-primary" />
+                  </svg>
+                </motion.div>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="text-6xl"
+                >
+                  🏛️
+                </motion.div>
+              </div>
+            )}
           </motion.div>
         </motion.div>
       </div>

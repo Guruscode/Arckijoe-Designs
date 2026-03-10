@@ -4,6 +4,8 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { ModalProvider } from '@/context/modal-context'
 import ConsultationModal from '@/components/consultation-modal'
+import VideoModal from '@/components/video-modal'
+import ImageModal from '@/components/image-modal'
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -51,6 +53,8 @@ export default function RootLayout({
         <ModalProvider>
           {children}
           <ConsultationModal />
+          <VideoModal />
+          <ImageModal />
         </ModalProvider>
         <Analytics />
       </body>

@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import Header from '@/components/header'
-import Hero from '@/components/hero'
 import ServiceCard from '@/components/service-card'
 import ProductCard from '@/components/product-card'
 import Footer from '@/components/footer'
@@ -86,14 +85,38 @@ export default function Services() {
     <>
       <Header />
       <main className="w-full">
-        {/* Hero */}
-        <Hero
-          title="We help you get the right materials for strong and beautiful buildings."
-          subtitle="Services & Products"
-          description="Comprehensive architectural design and premium building materials from Nigeria's trusted design company"
-          background="gradient"
-          align="center"
-        />
+        <section className="border-b border-border bg-secondary/30 py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-accent">
+                  Services & Products
+                </p>
+                <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-primary sm:text-5xl">
+                  We help you get the right materials for strong and beautiful buildings.
+                </h1>
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-foreground/75">
+                  From architectural planning to material sourcing and project oversight, every service is structured to reduce friction and improve build quality.
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+                <div className="rounded-3xl border border-border bg-white p-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Design</p>
+                  <p className="mt-3 text-2xl font-semibold text-primary">Custom architectural direction</p>
+                </div>
+                <div className="rounded-3xl border border-border bg-primary p-6 text-primary-foreground">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Supply</p>
+                  <p className="mt-3 text-2xl font-semibold">Quality materials with reliable access</p>
+                </div>
+                <div className="rounded-3xl border border-border bg-white p-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Execution</p>
+                  <p className="mt-3 text-2xl font-semibold text-primary">Practical project support from start to finish</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Services Section */}
         <section className="border-b border-border bg-white py-16 sm:py-24">

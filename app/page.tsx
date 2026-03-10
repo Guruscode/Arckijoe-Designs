@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import Header from '@/components/header'
 import Hero from '@/components/hero'
@@ -8,9 +11,12 @@ import Footer from '@/components/footer'
 import ProjectsGallery from '@/components/projects-gallery'
 import PlansGallery from '@/components/plans-gallery'
 import ProcessVisualization from '@/components/process-visualization'
+import { useModal } from '@/context/modal-context'
 import { ArrowRight, Hammer, Home as HomeIcon, Zap, Award, Users, ShoppingCart } from 'lucide-react'
 
 export default function HomePage() {
+  const { openImageModal } = useModal()
+
   return (
     <>
       <Header />
@@ -18,7 +24,7 @@ export default function HomePage() {
         {/* Hero Section */}
         <Hero
           title="Designing spaces that inspire, perform, and stand the test of time."
-          subtitle="Welcome to Arckijoe Designs"
+          // subtitle="Welcome to Arckijoe Designs"
           description="Expert architectural design and premium building materials for your dream home or commercial development."
           ctaText="Book a Consultation"
           ctaHref="/contact"
@@ -26,6 +32,8 @@ export default function HomePage() {
           secondaryCtaHref="/services"
           background="gradient"
           align="center"
+          imageSrc="/bg.JPG"
+          imageAlt="Completed project by Arckijoe Designs"
         />
 
         {/* About Section */}
@@ -65,13 +73,23 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Right - Placeholder Image */}
+              {/* Right - Project Image */}
               <div className="relative h-96 w-full overflow-hidden rounded-xl bg-secondary shadow-soft-lg">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="mb-4 text-6xl">🏗️</div>
-                    <p className="text-sm text-foreground/50">Professional Image Placeholder</p>
-                  </div>
+                <Image
+                  src="/img3.JPG"
+                  alt="Completed project by Arckijoe Designs"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+                    Featured Project
+                  </p>
+                  <p className="mt-2 text-lg font-semibold text-white">
+                    A look at one of our completed architectural projects.
+                  </p>
                 </div>
               </div>
             </div>
@@ -229,6 +247,32 @@ export default function HomePage() {
               >
                 💬 +234 706 063 0685
               </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white py-10 sm:py-12">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col items-start gap-5 rounded-[1.75rem] border border-border bg-secondary/30 px-6 py-6 sm:px-8 sm:py-7 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
+                  Client Testimonial
+                </p>
+                <p className="mt-2 max-w-2xl text-base text-foreground/75">
+                  See feedback shared by one of our clients.
+                </p>
+              </div>
+              <Button
+                onClick={() =>
+                  openImageModal({
+                    src: '/img1.JPG',
+                    title: 'Client Testimonial',
+                  })
+                }
+                className="bg-primary hover:bg-primary/90"
+              >
+                Click to View
+              </Button>
             </div>
           </div>
         </section>

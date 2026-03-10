@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import Header from '@/components/header'
-import Hero from '@/components/hero'
 import Footer from '@/components/footer'
 import AnimatedSection from '@/components/animated-section'
 import { motion } from 'framer-motion'
@@ -14,14 +14,59 @@ export default function About() {
     <>
       <Header />
       <main className="w-full">
-        {/* Hero */}
-        <Hero
-          title="About Arckijoe Designs"
-          subtitle="Our Story"
-          description="Crafting exceptional spaces with passion, expertise, and innovation"
-          background="gradient"
-          align="center"
-        />
+        <section className="overflow-hidden border-b border-border bg-stone-950 py-16 text-white sm:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+            <div className="flex flex-col justify-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-300">
+                Our Story
+              </p>
+              <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
+                About Arckijoe Designs
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">
+                Crafting exceptional spaces with passion, expertise, and a design process grounded in clarity, function, and long-term value.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <div className="rounded-full border border-white/20 px-5 py-2 text-sm text-white/80">
+                  Residential and commercial design
+                </div>
+                <div className="rounded-full border border-white/20 px-5 py-2 text-sm text-white/80">
+                  Material expertise
+                </div>
+                <div className="rounded-full border border-white/20 px-5 py-2 text-sm text-white/80">
+                  Project guidance
+                </div>
+              </div>
+            </div>
+
+            <div className="relative min-h-[320px] overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+              <Image
+                src="/img3.JPG"
+                alt="One of Arckijoe Designs' completed projects"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/25 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 grid gap-4 p-6 sm:grid-cols-3">
+                <div className="rounded-2xl bg-black/35 p-4 backdrop-blur-sm">
+                  <p className="text-2xl font-semibold">15+</p>
+                  <p className="text-sm text-white/70">Years of design experience</p>
+                </div>
+                <div className="rounded-2xl bg-black/35 p-4 backdrop-blur-sm">
+                  <p className="text-2xl font-semibold">100+</p>
+                  <p className="text-sm text-white/70">Projects shaped with care</p>
+                </div>
+                <div className="rounded-2xl bg-black/35 p-4 backdrop-blur-sm">
+                  <p className="text-2xl font-semibold">1:1</p>
+                  <p className="text-sm text-white/70">Client-first collaboration</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Mission & Vision */}
         <section className="border-b border-border bg-white py-16 sm:py-24">
@@ -256,7 +301,7 @@ export default function About() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="gap-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
+                className="gap-2 border-primary-foreground text-primary hover:bg-primary-foreground/10"
               >
                 <Link href="/services">
                   Explore Services

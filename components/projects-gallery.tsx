@@ -3,51 +3,22 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Play } from 'lucide-react'
+import { useModal } from '@/context/modal-context'
 
-interface Project {
+interface ProjectVideo {
   id: number
   title: string
-  emoji: string
   category: string
+  src: string
 }
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: 'Modern Residential Complex',
-    emoji: '🏢',
-    category: 'Residential'
-  },
-  {
-    id: 2,
-    title: 'Luxury Office Building',
-    emoji: '🏛️',
-    category: 'Commercial'
-  },
-  {
-    id: 3,
-    title: 'Eco-Friendly Living Space',
-    emoji: '🌿',
-    category: 'Sustainable'
-  },
-  {
-    id: 4,
-    title: 'Contemporary Museum Design',
-    emoji: '🎨',
-    category: 'Cultural'
-  },
-  {
-    id: 5,
-    title: 'Smart Office Conversion',
-    emoji: '💻',
-    category: 'Tech'
-  },
-  {
-    id: 6,
-    title: 'Heritage Restoration Project',
-    emoji: '🏰',
-    category: 'Heritage'
-  }
+const projectVideos: ProjectVideo[] = [
+  { id: 1, title: 'Staff Introduction 1', category: 'Team Story', src: '/vid1.MOV' },
+  { id: 2, title: 'Staff Introduction 2', category: 'Team Story', src: '/vid2.MOV' },
+  { id: 3, title: 'Staff Introduction 3', category: 'Team Story', src: '/vid3.MOV' },
+  { id: 4, title: 'Staff Introduction 4', category: 'Team Story', src: '/vid4.MOV' },
+  { id: 5, title: 'Staff Introduction 5', category: 'Team Story', src: '/vid5.MOV' },
+  { id: 6, title: 'Staff Introduction 6', category: 'Team Story', src: '/vid6.MOV' },
 ]
 
 const containerVariants = {
@@ -72,11 +43,11 @@ const itemVariants = {
 
 export default function ProjectsGallery() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
+  const { openVideoModal } = useModal()
 
   return (
-    <section className="w-full py-16 sm:py-24 bg-background">
+    <section className="w-full bg-background py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,18 +55,17 @@ export default function ProjectsGallery() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <p className="mb-2 text-sm font-semibold tracking-wider text-accent uppercase">
-            Completed Projects
+          <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-accent">
+            Meet The Team
           </p>
           <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Explore Our Finished Works
+            Hear From Our Staff
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Watch how we transform visions into architectural masterpieces
+            Click any video to watch our team talk about the company and the work we do.
           </p>
         </motion.div>
 
-        {/* Gallery Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -103,71 +73,62 @@ export default function ProjectsGallery() {
           viewport={{ once: true }}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={itemVariants}
-              onMouseEnter={() => setHoveredId(project.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              className="group relative overflow-hidden rounded-lg cursor-pointer"
-            >
-              <motion.div
-                className="relative h-64 bg-gradient-to-br from-accent/20 to-primary/10 rounded-lg overflow-hidden"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+          {projectVideos.map((project) => {
+            const isHovered = hoveredId === project.id
+
+            return (
+              <motion.button
+                key={project.id}
+                type="button"
+                variants={itemVariants}
+                onMouseEnter={() => setHoveredId(project.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                onClick={() => openVideoModal(project)}
+                className="group overflow-hidden rounded-2xl border border-border bg-card text-left shadow-sm transition-shadow hover:shadow-xl"
               >
-                {/* Background with emoji */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                  <span className="text-6xl">{project.emoji}</span>
-                </div>
-
-                {/* Animated gradient overlay */}
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: hoveredId === project.id ? 1 : 0 }}
+                  whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
-                  className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"
-                />
-
-                {/* Play button */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: hoveredId === project.id ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0 flex items-center justify-center"
+                  className="relative overflow-hidden bg-black"
                 >
+                  <video
+                    src={project.src}
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="aspect-[4/5] w-full object-cover"
+                  />
+
                   <motion.div
-                    animate={{ scale: hoveredId === project.id ? [1, 1.2, 1] : 1 }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                    className="p-4 rounded-full bg-accent/90 text-primary"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: isHovered ? 1 : 0.55 }}
+                    transition={{ duration: 0.25 }}
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                  />
+
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0.8 }}
+                    animate={{ scale: isHovered ? 1 : 0.9, opacity: 1 }}
+                    transition={{ duration: 0.25 }}
+                    className="absolute inset-0 flex items-center justify-center"
                   >
-                    <Play className="w-6 h-6 fill-current" />
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-primary shadow-lg">
+                      <Play className="h-7 w-7 fill-current" />
+                    </div>
                   </motion.div>
                 </motion.div>
-              </motion.div>
 
-              {/* Project Info */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="mt-4 p-4"
-              >
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="text-lg font-semibold text-foreground group-hover:text-accent transition-colors">
-                    {project.title}
-                  </h3>
+                <div className="p-4">
+                  <div className="mb-2 flex items-start justify-between gap-2">
+                    <h3 className="text-lg font-semibold text-foreground transition-colors group-hover:text-accent">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{project.category}</p>
                 </div>
-                <p className="text-sm text-muted-foreground">{project.category}</p>
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: hoveredId === project.id ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="mt-3 h-1 bg-accent origin-left"
-                />
-              </motion.div>
-            </motion.div>
-          ))}
+              </motion.button>
+            )
+          })}
         </motion.div>
       </div>
     </section>

@@ -3,39 +3,32 @@
 import React from 'react'
 import { useModal } from '@/context/modal-context'
 import { Button } from '@/components/ui/button'
-import { Mail, Phone, MessageCircle, X } from 'lucide-react'
+import { Phone, MessageCircle, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function ConsultationModal() {
-  const { isOpen, closeModal } = useModal()
+  const { isOpen, modalType, closeModal } = useModal()
 
   const contactMethods = [
     {
-      icon: Mail,
-      label: 'Email',
-      value: 'contact@arckijoe.com',
-      href: 'mailto:contact@arckijoe.com',
-      action: 'Send Email'
-    },
-    {
       icon: Phone,
-      label: 'Call Us',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
+      label: 'Call',
+      value: '📞 +2349028115562',
+      href: 'tel:+2349028115562',
       action: 'Call Now'
     },
     {
       icon: MessageCircle,
       label: 'WhatsApp',
-      value: '+1 (555) 987-6543',
-      href: 'https://wa.me/15559876543',
+      value: '+2347060630685',
+      href: 'https://wa.me/2347060630685',
       action: 'Message on WhatsApp'
     }
   ]
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isOpen && modalType === 'consultation' && (
         <>
           <motion.div
             initial={{ opacity: 0 }}
@@ -69,7 +62,7 @@ export default function ConsultationModal() {
               </div>
 
               {/* Contact Methods */}
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2">
                 {contactMethods.map((method) => {
                   const Icon = method.icon
                   return (
@@ -91,8 +84,8 @@ export default function ConsultationModal() {
                         </div>
                         <Button
                           variant="outline"
-                          size="sm"
-                          className="w-full mt-3"
+                          size="lg"
+                          className="mt-3 w-full text-base"
                           onClick={(e) => {
                             e.preventDefault()
                             window.open(method.href, method.label === 'WhatsApp' ? '_blank' : undefined)
