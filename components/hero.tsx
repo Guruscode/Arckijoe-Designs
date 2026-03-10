@@ -109,7 +109,7 @@ export default function Hero({
                   asChild
                   size="lg"
                   variant="outline"
-                  className="gap-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
+                  className="gap-2 border-primary-foreground text-primary hover:bg-primary-foreground/10"
                 >
                   <Link href={secondaryCtaHref || '#'}>
                     {secondaryCtaText}
