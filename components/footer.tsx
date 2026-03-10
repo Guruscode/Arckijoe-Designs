@@ -113,14 +113,14 @@ export default function Footer() {
           <p className="text-center text-sm opacity-90">
             &copy; {currentYear} Arckijoe Designs. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          {/* <div className="flex gap-6">
             <a href="#" className="text-sm opacity-90 transition-opacity hover:opacity-100">
               Privacy Policy
             </a>
             <a href="#" className="text-sm opacity-90 transition-opacity hover:opacity-100">
               Terms of Service
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
