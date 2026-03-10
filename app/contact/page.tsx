@@ -183,7 +183,7 @@ export default function Contact() {
               Ready to Start Your Project?
             </h2>
             <p className="mt-6 text-lg text-primary-foreground/90">
-              Fill out the form above or reach out directly via phone or WhatsApp
+             reach out directly via phone or WhatsApp
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center items-center">
