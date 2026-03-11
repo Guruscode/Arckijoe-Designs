@@ -223,13 +223,13 @@ export default function AdminDashboard({
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="rounded-[1.75rem] border border-border bg-white p-6">
+        <div className="rounded-[1.75rem] border border-border bg-white p-5 sm:p-6">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">
             Inventory control
           </p>
-          <h1 className="mt-3 text-3xl font-bold text-primary">Admin panel</h1>
+          <h1 className="mt-3 text-2xl font-bold text-primary sm:text-3xl">Admin panel</h1>
           <p className="mt-3 max-w-2xl text-sm text-foreground/70">
             Upload products, update stock visibility, and track customer orders from one dashboard.
           </p>
@@ -252,21 +252,21 @@ export default function AdminDashboard({
         </div>
       </div>
 
-      <div className="flex justify-end">
-        <Button variant="outline" onClick={handleLogout} disabled={isLoggingOut}>
+      <div className="flex justify-stretch sm:justify-end">
+        <Button className="w-full sm:w-auto" variant="outline" onClick={handleLogout} disabled={isLoggingOut}>
           {isLoggingOut ? 'Signing out...' : 'Sign out'}
         </Button>
       </div>
 
       <Tabs defaultValue="products" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid h-auto w-full grid-cols-2">
           <TabsTrigger value="products">Products</TabsTrigger>
           <TabsTrigger value="orders">Orders</TabsTrigger>
         </TabsList>
 
         <TabsContent value="products" className="space-y-6">
           <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <form onSubmit={handleProductSubmit} className="space-y-4 rounded-[1.75rem] border border-border bg-white p-6">
+            <form onSubmit={handleProductSubmit} className="space-y-4 rounded-[1.75rem] border border-border bg-white p-5 sm:p-6">
               <div>
                 <h2 className="text-xl font-semibold text-primary">
                   {editingProductId ? 'Edit product' : 'Add product'}
@@ -385,21 +385,50 @@ export default function AdminDashboard({
                 </label>
               </div>
 
-              <div className="flex flex-wrap gap-3">
-                <Button type="submit" className="bg-primary hover:bg-primary/90" disabled={isSavingProduct}>
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button type="submit" className="w-full bg-primary hover:bg-primary/90 sm:w-auto" disabled={isSavingProduct}>
                   {isSavingProduct ? 'Saving...' : editingProductId ? 'Update product' : 'Create product'}
                 </Button>
                 {editingProductId ? (
-                  <Button type="button" variant="outline" onClick={resetProductForm}>
+                  <Button type="button" variant="outline" className="w-full sm:w-auto" onClick={resetProductForm}>
                     Cancel edit
                   </Button>
                 ) : null}
               </div>
             </form>
 
-            <div className="rounded-[1.75rem] border border-border bg-white p-6">
+            <div className="rounded-[1.75rem] border border-border bg-white p-5 sm:p-6">
               <h2 className="text-xl font-semibold text-primary">Current products</h2>
-              <div className="mt-4">
+              <div className="mt-4 space-y-4 md:hidden">
+                {products.map((product) => (
+                  <div key={product.id} className="rounded-2xl border border-border bg-secondary/20 p-4">
+                    <div className="space-y-2">
+                      <p className="font-semibold text-primary">{product.title}</p>
+                      <p className="text-sm text-foreground/70">{product.description}</p>
+                      <p className="text-sm font-medium text-primary">
+                        NGN {product.price.toLocaleString()} <span className="font-normal text-foreground/60">{product.unit}</span>
+                      </p>
+                      <p className="text-xs uppercase tracking-[0.18em] text-foreground/55">
+                        {product.isActive ? 'Active' : 'Hidden'}{product.isFeatured ? ' / Featured' : ''}
+                      </p>
+                    </div>
+                    <div className="mt-4 flex flex-col gap-2">
+                      <Button variant="outline" className="w-full" onClick={() => startEditProduct(product)}>
+                        Edit
+                      </Button>
+                      <Button variant="outline" className="w-full" onClick={() => handleDeleteProduct(product.id)}>
+                        Delete
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+                {products.length === 0 ? (
+                  <div className="rounded-2xl border border-dashed border-border px-4 py-8 text-center text-sm text-foreground/60">
+                    No products yet.
+                  </div>
+                ) : null}
+              </div>
+              <div className="mt-4 hidden md:block">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -450,9 +479,53 @@ export default function AdminDashboard({
         </TabsContent>
 
         <TabsContent value="orders">
-          <div className="rounded-[1.75rem] border border-border bg-white p-6">
+          <div className="rounded-[1.75rem] border border-border bg-white p-5 sm:p-6">
             <h2 className="text-xl font-semibold text-primary">Incoming orders</h2>
-            <div className="mt-4">
+            <div className="mt-4 space-y-4 md:hidden">
+              {orders.map((order) => (
+                <div key={order.id} className="rounded-2xl border border-border bg-secondary/20 p-4">
+                  <div className="space-y-1">
+                    <p className="font-semibold text-primary">{order.customerName}</p>
+                    <p className="text-sm text-foreground/70">{order.customerEmail}</p>
+                    <p className="text-sm text-foreground/70">{order.customerPhone}</p>
+                  </div>
+                  <div className="mt-4 space-y-1">
+                    <p className="font-medium text-primary">{order.productTitle}</p>
+                    <p className="text-sm text-foreground/70">Quantity: {order.quantity}</p>
+                    <p className="text-sm text-foreground/70">
+                      Created: {new Date(order.createdAt).toLocaleDateString()}
+                    </p>
+                    {order.notes ? <p className="text-sm text-foreground/70">{order.notes}</p> : null}
+                  </div>
+                  <div className="mt-4 space-y-3">
+                    <Select
+                      value={order.status}
+                      onValueChange={(value) => handleOrderStatusChange(order.id, value as OrderStatus)}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {orderStatuses.map((status) => (
+                          <SelectItem key={status} value={status}>
+                            {status}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Button variant="outline" className="w-full" onClick={() => handleDeleteOrder(order.id)}>
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              ))}
+              {orders.length === 0 ? (
+                <div className="rounded-2xl border border-dashed border-border px-4 py-8 text-center text-sm text-foreground/60">
+                  No orders yet.
+                </div>
+              ) : null}
+            </div>
+            <div className="mt-4 hidden md:block">
               <Table>
                 <TableHeader>
                   <TableRow>
