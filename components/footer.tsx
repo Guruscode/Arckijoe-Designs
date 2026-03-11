@@ -91,10 +91,10 @@ export default function Footer() {
               <li className="flex gap-2">
                 <Mail className="h-4 w-4 flex-shrink-0" />
                 <a
-                  href="mailto:info@arckijoe.com"
+                  href="mailto:joearchitectokonkwo@yahoo.com"
                   className="opacity-90 transition-opacity hover:opacity-100"
                 >
-                  info@arckijoe.com
+                 joearchitectokonkwo@yahoo.com  
                 </a>
               </li>
               <li className="flex gap-2">

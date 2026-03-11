@@ -50,6 +50,7 @@ export default function VideoModal() {
                 <video
                   key={videoData.src}
                   src={videoData.src}
+                  poster={videoData.thumbnail}
                   controls
                   autoPlay
                   playsInline

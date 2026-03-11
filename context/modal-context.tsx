@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState } from 'react'
 
 export interface VideoModalData {
   src: string
+  thumbnail: string
   title: string
   category: string
 }

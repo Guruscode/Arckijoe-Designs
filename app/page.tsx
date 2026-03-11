@@ -225,7 +225,7 @@ export default function HomePage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="gap-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
+                className="gap-2 border-primary-foreground text-primary hover:bg-primary-foreground/10"
               >
                 <a href="https://wa.me/2347060630685" target="_blank" rel="noopener noreferrer">
                   Chat on WhatsApp

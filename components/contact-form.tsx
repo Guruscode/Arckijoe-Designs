@@ -97,8 +97,8 @@ export default function ContactForm() {
             <div>
               <h3 className="font-semibold text-primary">Email</h3>
               <p className="text-sm text-foreground/70">
-                <a href="mailto:info@arckijoe.com" className="hover:text-accent">
-                  info@arckijoe.com
+                <a href="mailto:joearchitectokonkwo@yahoo.com" className="hover:text-accent">
+                   joearchitectokonkwo@yahoo.com
                 </a>
               </p>
             </div>

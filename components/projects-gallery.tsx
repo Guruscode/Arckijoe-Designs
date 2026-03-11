@@ -10,15 +10,16 @@ interface ProjectVideo {
   title: string
   category: string
   src: string
+  thumbnail: string
 }
 
 const projectVideos: ProjectVideo[] = [
-  { id: 1, title: 'Staff Introduction 1', category: 'Team Story', src: '/vid1.MOV' },
-  { id: 2, title: 'Staff Introduction 2', category: 'Team Story', src: '/vid2.MOV' },
-  { id: 3, title: 'Staff Introduction 3', category: 'Team Story', src: '/vid3.MOV' },
-  { id: 4, title: 'Staff Introduction 4', category: 'Team Story', src: '/vid4.MOV' },
-  { id: 5, title: 'Staff Introduction 5', category: 'Team Story', src: '/vid5.MOV' },
-  { id: 6, title: 'Staff Introduction 6', category: 'Team Story', src: '/vid6.MOV' },
+  { id: 1, title: 'Staff Introduction 1', category: 'Team Story', src: '/vid1.MOV', thumbnail: '/vid1.jpg' },
+  { id: 2, title: 'Staff Introduction 2', category: 'Team Story', src: '/vid2.MOV', thumbnail: '/vid2.jpg' },
+  { id: 3, title: 'Staff Introduction 3', category: 'Team Story', src: '/vid3.MOV', thumbnail: '/vid3.jpg' },
+  { id: 4, title: 'Staff Introduction 4', category: 'Team Story', src: '/vid4.MOV', thumbnail: '/vid4.jpg' },
+  { id: 5, title: 'Staff Introduction 5', category: 'Team Story', src: '/vid5.MOV', thumbnail: '/vid5.jpg' },
+  { id: 6, title: 'Staff Introduction 6', category: 'Team Story', src: '/vid6.MOV', thumbnail: '/vid6.jpg' },
 ]
 
 const containerVariants = {
@@ -93,6 +94,7 @@ export default function ProjectsGallery() {
                 >
                   <video
                     src={project.src}
+                    poster={project.thumbnail}
                     muted
                     playsInline
                     preload="metadata"
