@@ -6,11 +6,11 @@ import { Button } from '@/components/ui/button'
 import Header from '@/components/header'
 import Hero from '@/components/hero'
 import ServiceCard from '@/components/service-card'
-import ProductCard from '@/components/product-card'
 import Footer from '@/components/footer'
 import ProjectsGallery from '@/components/projects-gallery'
 import PlansGallery from '@/components/plans-gallery'
 import ProcessVisualization from '@/components/process-visualization'
+import ProductsSection from '@/components/products-section'
 import { useModal } from '@/context/modal-context'
 import { ArrowRight, Hammer, Home as HomeIcon, Zap, Award, Users, ShoppingCart } from 'lucide-react'
 
@@ -193,6 +193,8 @@ export default function HomePage() {
 
         {/* Projects Gallery Section */}
         <ProjectsGallery />
+
+        <ProductsSection compact />
 
         {/* Plans Gallery Section */}
         <PlansGallery />

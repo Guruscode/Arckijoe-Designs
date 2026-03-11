@@ -4,21 +4,12 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import Header from '@/components/header'
 import ServiceCard from '@/components/service-card'
-import ProductCard from '@/components/product-card'
 import Footer from '@/components/footer'
+import ProductsSection from '@/components/products-section'
 import { motion } from 'framer-motion'
 import { ArrowRight, Zap, CheckCircle, Users, DollarSign, Truck, Award } from 'lucide-react'
 
 export default function Services() {
-  const products = [
-    { title: 'Cement', description: 'High-quality cement for all your construction needs' },
-    { title: 'Reinforcement Steel', description: 'Strong and reliable reinforcement materials' },
-    { title: 'Tiles & Finishing', description: 'Premium tiles and finishing materials' },
-    { title: 'Doors & Windows', description: 'Quality doors and window solutions' },
-    { title: 'Sanitary Wares', description: 'Complete bathroom and sanitary fixtures' },
-    { title: 'Paint & Coatings', description: 'Durable paints and protective coatings' },
-  ]
-
   const services = [
     {
       icon: <Zap className="h-6 w-6" />,
@@ -144,46 +135,7 @@ export default function Services() {
           </div>
         </section>
 
-        {/* Building Materials Section */}
-        <section className="border-b border-border bg-secondary/30 py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <h2 className="text-3xl font-bold text-primary sm:text-4xl">
-                Premium Building Materials
-              </h2>
-              <p className="mt-4 text-lg text-foreground/70 max-w-2xl mx-auto">
-                Quality materials for residential, commercial, and large-scale projects
-              </p>
-            </div>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {products.map((product, index) => (
-                <ProductCard
-                  key={index}
-                  title={product.title}
-                  description={product.description}
-                  isHighlight={index === 0}
-                />
-              ))}
-            </div>
-
-            <div className="mt-12 text-center">
-              <p className="text-foreground/70 mb-6">
-                Looking for a specific material? Contact us for bulk orders and custom solutions.
-              </p>
-              <Button
-                asChild
-                size="lg"
-                className="gap-2 bg-primary hover:bg-primary/90"
-              >
-                <Link href="/contact">
-                  Request a Quote
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+        <ProductsSection />
 
         {/* Why Choose Our Products */}
         <section className="border-b border-border bg-white py-16 sm:py-24">
