@@ -122,10 +122,18 @@ export default function About() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
               {/* Left - Image */}
-              <div className="relative h-96 w-full overflow-hidden rounded-xl bg-white shadow-soft-lg">
-                <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative flex min-h-[520px] w-full items-center justify-center overflow-hidden rounded-xl bg-white p-6 shadow-soft-lg sm:p-8">
+                <div className="flex h-full w-full items-center justify-center">
                   <div className="text-center">
-                    <div className="mb-4 text-7xl">👨‍💼</div>
+                    <div className="relative mb-4 h-[440px] w-[340px] max-w-full overflow-hidden rounded-2xl bg-stone-100">
+                      <Image
+                        src="/ceo.JPG"
+                        alt="Founder and lead architect"
+                        fill
+                        sizes="(min-width: 640px) 340px, 85vw"
+                        className="object-cover object-top"
+                      />
+                    </div>
                     <p className="text-sm text-foreground/50">Founder & Lead Architect</p>
                   </div>
                 </div>
